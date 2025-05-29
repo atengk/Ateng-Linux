@@ -178,6 +178,12 @@
         - [Snail-Job](/work/docker/service/snail-job/)
         - [Nextcloud私有云存储平台](/work/docker/service/nextcloud/)
         - [Cloudreve网盘服务](/work/docker/service/cloudreve/)
+        - [Samba](/work/docker/service/samba/)
+        - [VSFTP](/work/docker/service/vsftp/)
+        
+        - [mind map 思维导图](/work/docker/service/mind-map/)
+        
+        - [FileGator文件管理器](/work/docker/service/filegator/)
 - Kubernetes
     - 使用文档
         - [K8S使用文档](/work/kubernetes/OPS.md)

@@ -1,3 +1,4 @@
 FROM registry.lingo.local/service/java:debian12_temurin_openjdk-jdk-21-jre
 COPY docker-entrypoint.sh .
+COPY springboot3-demo-v1.0.jar .
 ENTRYPOINT ["./docker-entrypoint.sh"]

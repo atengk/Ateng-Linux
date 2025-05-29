@@ -36,7 +36,7 @@ ARG gid=1000
 WORKDIR ${WORK_DIR}
 
 # 复制软件包
-COPY --from=eclipse-temurin:21-jre /opt/java/openjdk openjdk
+COPY --from=eclipse-temurin:21 /opt/java/openjdk openjdk
 COPY --from=maven:3.9.9-eclipse-temurin-21 /usr/share/maven maven
 COPY --from=node:22.14 /usr/local nodejs
 # 安装Python不要改变路径，否则编译路径问题
@@ -59,7 +59,7 @@ RUN mkdir -p ${WORK_DIR} ${DATA_DIR} && \
 
 # 安装常用工具
     apt-get install --no-install-recommends -y \
-    git=1:2.39.* \
+    git=1:2.39.* openssh-client \
     ca-certificates \
     curl \
     tzdata \

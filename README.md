@@ -124,10 +124,9 @@
         - MariaDB Galera
             - [安装文档](/work/service/mariadb/v11.4.4/)
         - Redis
-            - [安装文档](/work/service/redis/v7.4.1/)
+            - [编译文档](/work/service/redis/v8.0.1/BUILD.md)
+            - [安装文档](/work/service/redis/v8.0.1/)
             - [使用文档](/work/service/redis/OPS.md)
-            - [Redis8 编译文档](/work/service/redis/v8.0.0/BUILD.md)
-            - [Redis8 安装文档](/work/service/redis/v8.0.0/)
         - PostgreSQL
             - [编译安装文档](/work/service/postgresql/v17.2.0/)
             - [编译PostGIS](/work/service/postgresql/v17.2.0/postgis/)
@@ -261,6 +260,12 @@
         - [Snail-Job](/work/docker/service/snail-job/)
         - [Nextcloud私有云存储平台](/work/docker/service/nextcloud/)
         - [Cloudreve网盘服务](/work/docker/service/cloudreve/)
+        - [Samba](/work/docker/service/samba/)
+        - [VSFTP](/work/docker/service/vsftp/)
+
+        - [mind map 思维导图](/work/docker/service/mind-map/)
+
+        - [FileGator文件管理器](/work/docker/service/filegator/)
 - Kubernetes
     - 使用文档
         - [K8S使用文档](/work/kubernetes/OPS.md)
@@ -300,14 +305,14 @@
     - 中间件服务
         - 数据存储
             - Redis
-                - [单机模式](/work/kubernetes/service/redis/v7.4.1/standalone/)
-                - [主从模式](/work/kubernetes/service/redis/v7.4.1/replication/)
-                - [哨兵模式](/work/kubernetes/service/redis/v7.4.1/sentinel/)
-                - [集群模式](/work/kubernetes/service/redis/v7.4.1/cluster/)
+                - [单机模式](/work/kubernetes/service/redis/v8.0.1/standalone/)
+                - [主从模式](/work/kubernetes/service/redis/v8.0.1/replication/)
+                - [哨兵模式](/work/kubernetes/service/redis/v8.0.1/sentinel/)
+                - [集群模式](/work/kubernetes/service/redis/v8.0.1/cluster/)
             - Valkey
                 - [单机模式](/work/kubernetes/service/redis/valkey/v8.0.2/)
             - Mariadb Galera
-                - [Galera集群](/work/kubernetes/service/mariadb/v11.4.4/)
+                - [Galera集群](/work/kubernetes/service/mariadb/v11.4.6/)
             - PostgreSQL
                 - [单机模式](/work/kubernetes/service/postgresql/v17.2.0/standalone/)
                 - [主从模式](/work/kubernetes/service/postgresql/v17.2.0/replication/)

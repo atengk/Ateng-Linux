@@ -1,5 +1,7 @@
 # Java应用镜像构建
 
+- [使用构建的应用](/work/docker/service/java/)
+
 
 
 ## 基础镜像构建
@@ -577,6 +579,91 @@ docker save registry.lingo.local/service/java-app-separate:debian12_temurin_open
 
 ## 最佳实践
 
+### 基础镜像构建
+
+**创建Dockerfile**
+
+其中 `COPY --from=eclipse-temurin:21-jre --chown=1001:1001 /opt/java/openjdk /opt/jdk` 可以根据实际情况修改JDK版本，以下JDK镜像版本参考
+
+- eclipse-temurin:21 eclipse-temurin:21-jre
+- eclipse-temurin:17 eclipse-temurin:17-jre
+- eclipse-temurin:11 eclipse-temurin:11-jre
+- eclipse-temurin:8 eclipse-temurin:8-jre
+
+```
+cat > Dockerfile-openjdk21 <<"EOF"
+FROM bitnami/minideb:bookworm
+
+ARG UID=1001
+ARG GID=1001
+ARG USER_NAME=admin
+ARG GROUP_NAME=ateng
+ARG WORK_DIR=/opt/app
+
+WORKDIR ${WORK_DIR}
+
+COPY --from=eclipse-temurin:21-jre --chown=${UID}:${GID} /opt/java/openjdk /opt/jdk
+
+RUN sed -i 's|http://deb.debian.org|http://mirrors.aliyun.com|g' /etc/apt/sources.list && \
+    apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
+        locales \
+        tzdata \
+        curl \
+        ca-certificates \
+        fontconfig && \
+    apt-get clean && \
+    echo "zh_CN.UTF-8 UTF-8" > /etc/locale.gen && \
+    locale-gen zh_CN.UTF-8 && \
+    groupadd -g ${GID} ${GROUP_NAME} && \
+    useradd -u ${UID} -g ${GROUP_NAME} -m ${USER_NAME} && \
+    chown -R ${UID}:${GID} ${WORK_DIR} && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+ENV JAVA_HOME=/opt/jdk
+ENV PATH=$PATH:$JAVA_HOME/bin
+ENV TZ=Asia/Shanghai
+ENV LANG=zh_CN.UTF-8
+
+USER ${UID}:${GID}
+
+ENTRYPOINT ["java"]
+EOF
+```
+
+**构建镜像**
+
+```shell
+docker build -f Dockerfile-openjdk21 \
+    -t registry.lingo.local/service/java:debian12_temurin_openjdk-jdk-21-jre .
+```
+
+**测试镜像**
+
+```shell
+docker run --rm \
+    registry.lingo.local/service/java:debian12_temurin_openjdk-jdk-21-jre \
+    -version
+```
+
+**推送镜像**
+
+```shell
+docker push registry.lingo.local/service/java:debian12_temurin_openjdk-jdk-21-jre
+```
+
+**保存镜像**
+
+```
+docker save \
+    registry.lingo.local/service/java:debian12_temurin_openjdk-jdk-21-jre \
+    | gzip -c > image-java_debian12_temurin_openjdk-jdk-21-jre.tar.gz
+```
+
+
+
+### Java应用镜像构建
+
 **编译和打包（可选）**
 
 如果需要将源码编译打包Jar文件，可以参考该步骤。一般情况下是直接提供了Jar文件的，所以该步骤可选
@@ -630,7 +717,7 @@ JAR_CMD=${JAR_CMD:--jar springboot3-demo-v1.0.jar}
 # 设置 JVM 参数
 JAVA_OPTS=${JAVA_OPTS:--Xms128m -Xmx1024m}
 # 设置 Spring Boot 参数
-SPRING_OPTS=${SPRING_OPTS:---spring.profiles.active=prod}
+SPRING_OPTS=${SPRING_OPTS:---server.port=8080 --spring.profiles.active=prod}
 # 设置应用启动命令
 RUN_CMD=${RUN_CMD:-java ${JAVA_OPTS} ${JAR_CMD} ${SPRING_OPTS}}
 
@@ -643,52 +730,11 @@ chmod +x docker-entrypoint.sh
 
 **创建Dockerfile**
 
-其中 `COPY --from=eclipse-temurin:21-jre --chown=1001:1001 /opt/java/openjdk /opt/jdk` 可以根据实际情况修改JDK版本，以下JDK镜像版本参考
-
-- eclipse-temurin:21 eclipse-temurin:21-jre
-- eclipse-temurin:17 eclipse-temurin:17-jre
-- eclipse-temurin:11 eclipse-temurin:11-jre
-- eclipse-temurin:8 eclipse-temurin:8-jre
-
 ```
-cat > Dockerfile-java <<"EOF"
-FROM debian:12.10
-
-ARG UID=1001
-ARG GID=1001
-ARG USER_NAME=admin
-ARG GROUP_NAME=ateng
-ARG WORK_DIR=/opt/app
-
-WORKDIR ${WORK_DIR}
-
-COPY --from=eclipse-temurin:21-jre --chown=${UID}:${GID} /opt/java/openjdk /opt/jdk
-COPY --chown=${UID}:${GID} docker-entrypoint.sh .
-COPY --chown=${UID}:${GID} springboot3-demo-v1.0.jar .
-
-RUN sed -i 's|http://deb.debian.org|http://mirrors.aliyun.com|g' /etc/apt/sources.list.d/debian.sources && \
-    apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
-        locales \
-        tzdata \
-        curl \
-        ca-certificates \
-        fontconfig && \
-    apt-get clean && \
-    echo "zh_CN.UTF-8 UTF-8" > /etc/locale.gen && \
-    locale-gen zh_CN.UTF-8 && \
-    groupadd -g ${GID} ${GROUP_NAME} && \
-    useradd -u ${UID} -g ${GROUP_NAME} -m ${USER_NAME} && \
-    chown -R ${UID}:${GID} ${WORK_DIR} && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-ENV JAVA_HOME=/opt/jdk
-ENV PATH=$PATH:$JAVA_HOME/bin
-ENV TZ=Asia/Shanghai
-ENV LANG=zh_CN.UTF-8
-
-USER ${UID}:${GID}
-
+cat > Dockerfile-app <<"EOF"
+FROM registry.lingo.local/service/java:debian12_temurin_openjdk-jdk-21-jre
+COPY docker-entrypoint.sh .
+COPY springboot3-demo-v1.0.jar .
 ENTRYPOINT ["./docker-entrypoint.sh"]
 EOF
 ```
@@ -696,7 +742,7 @@ EOF
 **构建镜像**
 
 ```
-docker build -f Dockerfile-java \
+docker build -f Dockerfile-app \
     -t registry.lingo.local/service/springboot3-demo:v1.0 .
 ```
 

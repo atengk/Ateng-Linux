@@ -1,4 +1,4 @@
-FROM debian:12.10
+FROM bitnami/minideb:bookworm
 
 ARG UID=1001
 ARG GID=1001
@@ -8,20 +8,22 @@ ARG WORK_DIR=/opt/app
 
 WORKDIR ${WORK_DIR}
 
-ADD OpenJDK21U-*.tar.gz /opt/
+COPY --from=eclipse-temurin:21-jre --chown=${UID}:${GID} /opt/java/openjdk /opt/jdk
 
-RUN sed -i 's|http://deb.debian.org|http://mirrors.aliyun.com|g' /etc/apt/sources.list.d/debian.sources && \
+RUN sed -i 's|http://deb.debian.org|http://mirrors.aliyun.com|g' /etc/apt/sources.list && \
     apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
-    locales tzdata curl ca-certificates fontconfig fonts-noto-cjk unzip zip vim net-tools iproute2 iputils-ping less wget jq dnsutils traceroute tcpdump nmap && \
+        locales \
+        tzdata \
+        curl \
+        ca-certificates \
+        fontconfig && \
     apt-get clean && \
     echo "zh_CN.UTF-8 UTF-8" > /etc/locale.gen && \
     locale-gen zh_CN.UTF-8 && \
-    update-locale LANG=zh_CN.UTF-8 && \
     groupadd -g ${GID} ${GROUP_NAME} && \
     useradd -u ${UID} -g ${GROUP_NAME} -m ${USER_NAME} && \
     chown -R ${UID}:${GID} ${WORK_DIR} && \
-    mv /opt/jdk* /opt/jdk && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ENV JAVA_HOME=/opt/jdk
