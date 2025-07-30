@@ -10,6 +10,7 @@ spec:
   - protocol: TCP
     port: 3389
     targetPort: 3389
+    nodePort: 38100
   type: NodePort
 ---
 apiVersion: kubevirt.io/v1
@@ -25,6 +26,8 @@ spec:
     metadata:
       labels:
         kubevirt.io/vm: vm-win10-ky
+      annotations:
+        "cni.projectcalico.org/ipAddrs": "[\"10.244.250.100\"]"
     spec:
       nodeSelector:
         kubernetes.io/hostname: server02.lingo.local
@@ -33,7 +36,7 @@ spec:
           cores: 16
           model: host-passthrough
         memory:
-          guest: 32Gi
+          guest: 24Gi
         resources:
           overcommitGuestOverhead: true
         machine:
