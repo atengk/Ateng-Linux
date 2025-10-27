@@ -1,0 +1,4 @@
+bitnamilegacy/milvus:2.6.0
+bitnamilegacy/pymilvus:2.6.0
+bitnamilegacy/attu:2.5.12
+bitnamilegacy/os-shell:12
