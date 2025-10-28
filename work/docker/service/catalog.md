@@ -37,3 +37,7 @@
 - [mind map 思维导图](/work/docker/service/mind-map/)
 
 - [FileGator文件管理器](/work/docker/service/filegator/)
+
+- [RustFS](/work/docker/service/rustfs/)
+
+- [Nexus 3](/work/docker/service/nexus/)
