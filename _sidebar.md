@@ -42,8 +42,8 @@
         - MariaDB Galera
             - [安装文档](/work/service/mariadb/v11.4.4/)
         - Redis
-            - [编译文档](/work/service/redis/v8.0.1/BUILD.md)
-            - [安装文档](/work/service/redis/v8.0.1/)
+            - [编译文档](/work/service/redis/v8.2.2/BUILD.md)
+            - [安装文档](/work/service/redis/v8.2.2/)
             - [使用文档](/work/service/redis/OPS.md)
         - PostgreSQL
             - [编译安装文档](/work/service/postgresql/v17.2.0/)
@@ -62,6 +62,10 @@
             - [1.x安装文档](/work/service/opensearch/v1.3.19/)
             - [2.x安装文档](/work/service/opensearch/v2.18.0/)
             - [使用文档](/work/service/opensearch/OPS.md)
+    - 消息队列服务
+        - RabbitMQ
+          - [安装文档](/work/service/rabbitmq/)
+          - [使用文档](/work/service/rabbitmq/OPS.md)
     - Web服务
         - Nginx
             - [安装文档](/work/service/nginx/v1.27.3/)
