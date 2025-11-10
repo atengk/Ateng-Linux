@@ -277,3 +277,59 @@ rabbit@service03
 ```
 
 ![image-20251107102625217](./assets/image-20251107102625217.png)
+
+
+
+## 添加插件
+
+延迟消息插件
+
+**下载插件**
+
+```
+wget https://github.com/rabbitmq/rabbitmq-delayed-message-exchange/releases/download/v4.2.0/rabbitmq_delayed_message_exchange-4.2.0.ez
+```
+
+**复制插件文件**
+
+```
+cp rabbitmq_delayed_message_exchange-4.2.0.ez /usr/local/software/rabbitmq/plugins/
+```
+
+**启用插件**
+
+执行以下命令启用：
+
+```
+rabbitmq-plugins enable rabbitmq_delayed_message_exchange
+```
+
+如果成功，会显示：
+
+```
+Enabling plugins on node rabbit@service01:
+rabbitmq_delayed_message_exchange
+Applying plugin configuration to rabbit@service01...
+Plugin configuration updated.
+```
+
+**重启 RabbitMQ 服务**
+
+```
+rabbitmqctl stop_app
+rabbitmqctl start_app
+```
+
+**验证插件是否加载成功**
+
+```
+rabbitmq-plugins list | grep delayed
+```
+
+输出应类似：
+
+```
+[E*] rabbitmq_delayed_message_exchange 4.2.0
+```
+
+> `[E*]` 表示该插件已启用并生效。
