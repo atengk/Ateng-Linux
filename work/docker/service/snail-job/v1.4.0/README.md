@@ -13,13 +13,13 @@
 
 **下载SQL**
 
-- MySQL：https://gitee.com/aizuda/snail-job/raw/vsj1.8.1/doc/sql/snail_job_mysql.sql
-- PostgreSQL：https://gitee.com/aizuda/snail-job/raw/vsj1.8.1/doc/sql/snail_job_postgre.sql
-- 更多sql下载地址：https://gitee.com/aizuda/snail-job/tree/vsj1.8.1/doc/sql
+- MySQL：https://gitee.com/aizuda/snail-job/raw/vsj1.4.0/doc/sql/snail_job_mysql.sql
+- PostgreSQL：https://gitee.com/aizuda/snail-job/raw/vsj1.4.0/doc/sql/snail_job_postgre.sql
+- 更多sql下载地址：https://gitee.com/aizuda/snail-job/tree/vsj1.4.0/doc/sql
 
 ```bash
-curl -o snail_job_mysql.sql https://gitee.com/aizuda/snail-job/raw/vsj1.8.1/doc/sql/snail_job_mysql.sql
-curl -o snail_job_postgre.sql https://gitee.com/aizuda/snail-job/raw/vsj1.8.1/doc/sql/snail_job_postgre.sql
+curl -o snail_job_mysql.sql https://gitee.com/aizuda/snail-job/raw/vsj1.4.0/doc/sql/snail_job_mysql.sql
+curl -o snail_job_postgre.sql https://gitee.com/aizuda/snail-job/raw/vsj1.4.0/doc/sql/snail_job_postgre.sql
 ```
 
 **导入SQL**
@@ -38,8 +38,6 @@ psql --host 192.168.1.12 -U snail_job -d ateng_snail_job -p 32297 -f snail_job_p
 
 - MySQL
 
-> 注意SQL脚本里面有写死的数据库
-
 ```
 export MYSQL_PWD=Admin@123
 mysql -h192.168.1.13 -P20001 -uroot
@@ -53,20 +51,20 @@ mysql -h192.168.1.12 -P32297 -usnail_job -pAdmin@123 ateng_snail_job < snail_job
 **下载镜像**
 
 ```
-docker pull opensnail/snail-job:1.8.1
+docker pull opensnail/snail-job:1.4.0
 ```
 
 **推送到仓库**
 
 ```
-docker tag opensnail/snail-job:1.8.1 registry.lingo.local/service/snail-job:1.8.1
-docker push registry.lingo.local/service/snail-job:1.8.1
+docker tag opensnail/snail-job:1.4.0 registry.lingo.local/service/snail-job:1.4.0
+docker push registry.lingo.local/service/snail-job:1.4.0
 ```
 
 **保存镜像**
 
 ```
-docker save registry.lingo.local/service/snail-job:1.8.1 | gzip -c > image-snail-job_1.8.1.tar.gz
+docker save registry.lingo.local/service/snail-job:1.4.0 | gzip -c > image-snail-job_1.4.0.tar.gz
 ```
 
 **创建目录**
@@ -89,8 +87,8 @@ spring:
     ## mysql
     #driver-class-name: com.mysql.cj.jdbc.Driver
     #url: jdbc:mysql://192.168.1.10:32297/ateng_snail_job?useSSL=false&characterEncoding=utf8&useUnicode=true
-    username: snail_job
-    password: Admin@123
+    username: postgres
+    password: Lingo@local_postgresql_5432
     type: com.zaxxer.hikari.HikariDataSource
     hikari:
       connection-timeout: 30000
@@ -117,7 +115,7 @@ docker run -d --name ateng-snail-job \
   -v /data/container/snail-job/config/application-extra.yml:/snailjob/server/application-extra.yml:ro \
   -v /data/container/snail-job/data:/snailjob/server/data \
   --entrypoint java \
-  registry.lingo.local/service/snail-job:1.8.1 \
+  registry.lingo.local/service/snail-job:1.4.0 \
   -server -Xms512m -Xmx2048m \
   -jar app.jar \
   --spring.config.additional-location=application-extra.yml

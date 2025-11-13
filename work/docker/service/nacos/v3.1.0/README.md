@@ -4,7 +4,7 @@ Nacos（"Dynamic Naming and Configuration Service"）是一个开源的动态服
 
 Nacos通常与微服务架构中的其他组件一起使用，像是 Spring Cloud、Dubbo 等，成为分布式系统中服务治理和配置管理的重要一环。
 
-- [官方文档](https://nacos.io/docs/v2.4/overview/)
+- [官方文档](https://nacos.io/docs/v3.0/overview/)
 - [GitHub](https://github.com/alibaba/nacos)
 
 
@@ -12,20 +12,20 @@ Nacos通常与微服务架构中的其他组件一起使用，像是 Spring Clou
 **下载镜像**
 
 ```
-docker pull nacos/nacos-server:v2.4.3
+docker pull nacos/nacos-server:v3.1.0
 ```
 
 **推送到仓库**
 
 ```
-docker tag nacos/nacos-server:v2.4.3 registry.lingo.local/service/nacos-server:v2.4.3
-docker push registry.lingo.local/service/nacos-server:v2.4.3
+docker tag nacos/nacos-server:v3.1.0 registry.lingo.local/service/nacos-server:v3.1.0
+docker push registry.lingo.local/service/nacos-server:v3.1.0
 ```
 
 **保存镜像**
 
 ```
-docker save registry.lingo.local/service/nacos-server:v2.4.3 | gzip -c > image-nacos-server_v2.4.3.tar.gz
+docker save registry.lingo.local/service/nacos-server:v3.1.0 | gzip -c > image-nacos-server_v3.1.0.tar.gz
 ```
 
 **创建目录**
@@ -41,7 +41,7 @@ client-port8848映射的端口需要和client-rpc映射的端口保持：client-
 
 ```
 docker run -d --name ateng-nacos --user 1001 \
-  -p 20027:8848 -p 21027:9848 --restart=always \
+  -p 20028:8080 -p 20027:8848 -p 21027:9848 --restart=always \
   -v /data/container/nacos/data:/home/nacos/data \
   -v /data/container/nacos/logs:/home/nacos/logs \
   -e MODE=standalone \
@@ -53,7 +53,7 @@ docker run -d --name ateng-nacos --user 1001 \
   -e JVM_XMS=2g \
   -e JVM_XMX=2g \
   -e TZ=Asia/Shanghai \
-  registry.lingo.local/service/nacos-server:v2.4.3
+  registry.lingo.local/service/nacos-server:v3.1.0
 ```
 
 **查看日志**
@@ -65,7 +65,8 @@ docker logs -f ateng-nacos
 **使用服务**
 
 ```
-URL：http://192.168.1.12:20027/nacos
+Web Console Address：http://47.108.128.105:20028/
+API Address: 47.108.128.105:20027
 Username: nacos
 Password: Admin@123
 ```
