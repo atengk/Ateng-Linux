@@ -1,3 +1,5 @@
-selectdb/doris.fe-ubuntu:2.1.7
-selectdb/doris.be-ubuntu:2.1.7
-bitnami/mysql:8.4.3
+apache/doris:fe-4.0.1
+apache/doris:be-4.0.1
+apache/doris:ms-4.0.1
+apache/doris:broker-4.0.1
+mysql:8.4.7

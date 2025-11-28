@@ -41,3 +41,5 @@
 - [RustFS](/work/docker/service/rustfs/)
 
 - [Nexus 3](/work/docker/service/nexus/)
+
+- [Milvus](/work/docker/service/milvus/)

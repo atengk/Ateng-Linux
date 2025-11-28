@@ -192,6 +192,8 @@
         - [RustFS](/work/docker/service/rustfs/)
         
         - [Nexus 3](/work/docker/service/nexus/)
+        
+        - [Milvus](/work/docker/service/milvus/)
 - Kubernetes
     - 使用文档
         - [K8S使用文档](/work/kubernetes/OPS.md)

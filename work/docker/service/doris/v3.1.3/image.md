@@ -4,7 +4,7 @@
 
 ```
 app=doris
-version=4.0.1
+version=3.1.3
 cat > images-list.txt <<EOF
 apache/doris:fe-${version}
 apache/doris:be-${version}

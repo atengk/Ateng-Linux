@@ -4,11 +4,10 @@
 
 ```
 app=doris
-version=4.0.1
+version=2.1.11
 cat > images-list.txt <<EOF
 apache/doris:fe-${version}
 apache/doris:be-${version}
-apache/doris:ms-${version}
 apache/doris:broker-${version}
 mysql:8.4.7
 EOF

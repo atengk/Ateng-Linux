@@ -1,10 +1,16 @@
-# Doris4
+# Doris3
 
-**Apache Doris** 是一款高性能、实时数仓（Real-Time Data Warehouse），由百度开源并加入 Apache 基金会孵化。它采用 MPP 架构、列式存储，并具备高吞吐的导入能力与秒级查询性能，适用于 BI 分析、实时报表、OLAP 查询、日志分析、指标平台等场景。Doris 的设计目标是让“实时 + 分析”简单易用，运维成本极低，同时保持企业级数据仓库的稳定性与扩展性。
+Apache Doris 是一个用于实时分析的现代数据仓库。它可以对大规模实时数据进行闪电般的快速分析。
 
-**Doris 4.0** 是一次架构级升级，重点引入新的 **Lakehouse 架构（Doris-Lake）**、更强的 **向量化执行引擎**、更智能的 **查询优化器 Nereids** 以及全面增强的安全体系。相比 3.x，4.0 提供更高并发、更快查询、更灵活的存储层、更完善的资源隔离与权限管理，并大幅提升与外部数据湖（Iceberg、Hive、S3）的互通能力，是面向统一数仓与数据湖的核心版本。
+- [官网链接](https://doris.apache.org/zh-CN/docs/3.0/compute-storage-decoupled/overview)
 
-- [官网链接](https://doris.apache.org/zh-CN/docs/4.x/gettingStarted/what-is-apache-doris)
+Doris 存算分离架构：
+
+- FE：负责接收用户请求，负责存储库表的元数据，目前是有状态的，未来会和 BE 类似，演化为无状态。
+- BE：无状态化的 Doris BE 节点，负责具体的计算任务。BE 上会缓存一部分 Tablet 元数据和数据以提高查询性能。
+- MS：存算分离模式新增模块，程序名为 doris_cloud，可通过启动不同参数来指定为以下两种角色之一
+- - Meta Service：元数据管理，提供元数据操作的服务，例如创建 Tablet，新增 Rowset，Tablet 查询以及 Rowset 元数据查询等功能。
+    - Recycler：数据回收。通过定期对记录已标记删除的数据的元数据进行扫描，实现对数据的定期异步正向回收（文件实际存储在 S3 或 HDFS 上），而无须列举数据对象进行元数据对比。
 
 
 
@@ -33,14 +39,15 @@ sudo tee /data/container/doris/config/fe.conf <<"EOF"
 CUR_DATE=`date +%Y%m%d-%H%M%S`
 LOG_DIR = ${DORIS_HOME}/log
 JAVA_HOME=/usr/lib/jvm/java
-JAVA_OPTS_FOR_JDK_17="-Xms1024m -Xmx8192m -Dfile.encoding=UTF-8 -Djavax.security.auth.useSubjectCredsOnly=false -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=$LOG_DIR -Xlog:gc*,classhisto*=trace:$LOG_DIR/fe.gc.log.$CUR_DATE:time,uptime:filecount=10,filesize=50M --add-opens=java.base/java.nio=ALL-UNNAMED --add-opens java.base/jdk.internal.ref=ALL-UNNAMED --add-opens java.base/sun.nio.ch=ALL-UNNAMED --add-opens java.xml/com.sun.org.apache.xerces.internal.jaxp=ALL-UNNAMED"
+JAVA_OPTS="-Xms1024m -Xmx8192m -Dfile.encoding=UTF-8 -Djavax.security.auth.useSubjectCredsOnly=false -XX:+UnlockExperimentalVMOptions -XX:+UseG1GC -XX:MaxGCPauseMillis=200 -XX:+PrintGCDateStamps -XX:+PrintGCDetails -XX:+PrintClassHistogramAfterFullGC -Xloggc:$LOG_DIR/log/fe.gc.log.$CUR_DATE -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=10 -XX:GCLogFileSize=50M -Dlog4j2.formatMsgNoLookups=true"
+JAVA_OPTS_FOR_JDK_17="-Xms1024m -Xmx8192m -Dfile.encoding=UTF-8 -Djavax.security.auth.useSubjectCredsOnly=false -XX:+UseG1GC -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=$LOG_DIR -Xlog:gc*,classhisto*=trace:$LOG_DIR/fe.gc.log.$CUR_DATE:time,uptime:filecount=10,filesize=50M --add-opens=java.base/java.nio=ALL-UNNAMED --add-opens java.base/jdk.internal.ref=ALL-UNNAMED --add-opens java.base/sun.nio.ch=ALL-UNNAMED --add-opens java.xml/com.sun.org.apache.xerces.internal.jaxp=ALL-UNNAMED"
 meta_dir = ${DORIS_HOME}/doris-meta
 jdbc_drivers_dir = ${DORIS_HOME}/jdbc_drivers
 http_port = 8030
 rpc_port = 9020
 query_port = 9030
 edit_log_port = 9010
-arrow_flight_sql_port = 8070
+arrow_flight_sql_port = -1
 log_roll_size_mb = 1024
 # INFO, WARN, ERROR, FATAL
 sys_log_level = WARN
@@ -58,7 +65,8 @@ EOF
 ```
 sudo tee /data/container/doris/config/be.conf <<"EOF"
 CUR_DATE=`date +%Y%m%d-%H%M%S`
-LOG_DIR="${DORIS_HOME}/log/"
+LOG_DIR="$DORIS_HOME/log/"
+JAVA_OPTS="-Xms1024m -Xmx8192m -Dfile.encoding=UTF-8 -DlogPath=$LOG_DIR/jni.log -Xloggc:$LOG_DIR/be.gc.log.$CUR_DATE -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=10 -XX:GCLogFileSize=50M -Djavax.security.auth.useSubjectCredsOnly=false -Dsun.security.krb5.debug=true -Dsun.java.command=DorisBE -XX:-CriticalJNINatives"
 JAVA_OPTS_FOR_JDK_17="-Xms1024m -Xmx8192m -Dfile.encoding=UTF-8 -Djol.skipHotspotSAAttach=true -DlogPath=$LOG_DIR/jni.log -Xlog:gc*:$LOG_DIR/be.gc.log.$CUR_DATE:time,uptime:filecount=10,filesize=50M -Djavax.security.auth.useSubjectCredsOnly=false -Dsun.security.krb5.debug=true -Dsun.java.command=DorisBE -XX:-CriticalJNINatives -XX:+IgnoreUnrecognizedVMOptions --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.invoke=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.base/java.io=ALL-UNNAMED --add-opens=java.base/java.net=ALL-UNNAMED --add-opens=java.base/java.nio=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.util.concurrent=ALL-UNNAMED --add-opens=java.base/java.util.concurrent.atomic=ALL-UNNAMED --add-opens=java.base/sun.nio.ch=ALL-UNNAMED --add-opens=java.base/sun.nio.cs=ALL-UNNAMED --add-opens=java.base/sun.security.action=ALL-UNNAMED --add-opens=java.base/sun.util.calendar=ALL-UNNAMED --add-opens=java.security.jgss/sun.security.krb5=ALL-UNNAMED --add-opens=java.management/sun.management=ALL-UNNAMED -Darrow.enable_null_check_for_get=false"
 JAVA_HOME=/usr/lib/jvm/java
 JEMALLOC_CONF="percpu_arena:percpu,background_thread:true,metadata_thp:auto,muzzy_decay_ms:5000,dirty_decay_ms:5000,oversize_threshold:0,prof:true,prof_active:false,lg_prof_interval:-1,lg_extent_max_active_fit:8"
@@ -68,7 +76,7 @@ be_port = 9060
 webserver_port = 8040
 heartbeat_service_port = 9050
 brpc_port = 8060
-arrow_flight_sql_port = 8050
+arrow_flight_sql_port = -1
 storage_root_path = ${DORIS_HOME}/storage
 jdbc_drivers_dir = ${DORIS_HOME}/jdbc_drivers
 # INFO, WARNING, ERROR, FATAL
@@ -82,12 +90,12 @@ EOF
 
 ```
 docker run -d --name ateng-doris-fe \
-  --net ateng-network -p 20024:8030 -p 20025:9030 -p 20026:8050 --restart=always \
+  --net ateng-network -p 20024:8030 -p 20025:9030 --restart=always \
   -v /data/container/doris/config/fe.conf:/opt/apache-doris/fe/conf/fe.conf:ro \
   -v /data/container/doris/data/fe:/opt/apache-doris/fe/doris-meta \
   -e TZ=Asia/Shanghai \
   --entrypoint /opt/apache-doris/fe/bin/start_fe.sh \
-  registry.lingo.local/service/doris:fe-4.0.1
+  registry.lingo.local/service/doris:fe-3.1.3
 ```
 
 查看日志
@@ -105,7 +113,7 @@ docker run -d --name ateng-doris-be \
   -v /data/container/doris/data/be:/opt/apache-doris/be/storage \
   -e TZ=Asia/Shanghai \
   --entrypoint /opt/apache-doris/be/bin/start_be.sh \
-  registry.lingo.local/service/doris:be-4.0.1
+  registry.lingo.local/service/doris:be-3.1.3
 ```
 
 查看日志
@@ -154,18 +162,24 @@ SHOW BACKENDS\G;
 
 ## 设置用户密码
 
-在创建 Doris 集群时，系统会自动创建一个名为 `root` 的用户，并默认设置其密码为空。为了提高安全性，建议在集群创建后立即为 `root` 用户设置一个新密码。
+Root 用户和 Admin 用户都属于 Apache Doris 安装完默认存在的 2 个账户。其中 Root 用户拥有整个集群的超级权限，可以对集群完成各种管理操作，比如添加节点，去除节点。Admin 用户没有管理权限，是集群中的 Superuser，拥有除集群管理相关以外的所有权限。建议只有在需要对集群进行运维管理超级权限时才使用 Root 权限。
 
-**远程连接FE，修改root密码**
-
-```
-mysql -uroot -P20025 -h192.168.1.12 -e "SET PASSWORD = PASSWORD('Admin@123');"
-```
-
-**远程连接FE，修改admin密码**
+**连接FE**
 
 ```
-mysql -uadmin -P20025 -h192.168.1.12 -e "SET PASSWORD = PASSWORD('Admin@123');"
+mysql -uroot -P9030 -h127.0.0.1
+```
+
+**设置root用户密码**
+
+```
+SET PASSWORD FOR 'root'@'%' = PASSWORD('Admin@123');
+```
+
+**设置admin用户密码**
+
+```
+SET PASSWORD FOR 'admin'@'%' = PASSWORD('Admin@123');
 ```
 
 **创建普通用户**
@@ -243,14 +257,6 @@ Password: Admin@123
 ```
 
 例如使用mysql客户端：`mysql -uadmin -pAdmin@123 -h192.168.1.12 -P20025`
-
-**使用Arrow Flight SQL**
-
-```
-Address: 192.168.1.12:20026
-Username: admin
-Password: Admin@123
-```
 
 
 
