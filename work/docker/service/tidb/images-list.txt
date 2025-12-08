@@ -1,0 +1,4 @@
+pingcap/tidb:v8.5.4
+pingcap/tikv:v8.5.4
+pingcap/pd:v8.5.4
+mysql:8.4.7

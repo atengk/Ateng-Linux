@@ -7,20 +7,20 @@
 **下载镜像**
 
 ```
-docker pull kafbat/kafka-ui:v1.4.2
+docker pull provectuslabs/kafka-ui:v0.7.2
 ```
 
 **推送到仓库**
 
 ```
-docker tag kafbat/kafka-ui:v1.4.2 registry.lingo.local/service/kafka-ui:v1.4.2
-docker push registry.lingo.local/service/kafka-ui:v1.4.2
+docker tag provectuslabs/kafka-ui:v0.7.2 registry.lingo.local/service/kafka-ui:v0.7.2
+docker push registry.lingo.local/service/kafka-ui:v0.7.2
 ```
 
 **保存镜像**
 
 ```
-docker save registry.lingo.local/service/kafka-ui:v1.4.2 | gzip -c > image-kafka-ui_v1.4.2.tar.gz
+docker save registry.lingo.local/service/kafka-ui:v0.7.2 | gzip -c > image-kafka-ui_v0.7.2.tar.gz
 ```
 
 **创建目录**
@@ -49,7 +49,7 @@ docker run -d --name ateng-kafka-ui \
   -v /data/container/kafka-ui/config/dynamic_config.yaml:/etc/kafkaui/dynamic_config.yaml:rw\
   -e DYNAMIC_CONFIG_ENABLED=true \
   -e TZ=Asia/Shanghai \
-  registry.lingo.local/service/kafka-ui:v1.4.2
+  registry.lingo.local/service/kafka-ui:v0.7.2
 ```
 
 **查看日志**
