@@ -49,7 +49,7 @@ obclient  Ver  Distrib 10.4.18-MariaDB, for Linux (x86_64) using readline 5.1
 **创建目录**
 
 ```
-sudo mkdir -p /data/service/oceanbase/{sstable,slog,ilog,clog}
+sudo mkdir -p /data/service/oceanbase/{sstable,slog,clog}
 sudo chown -R admin:ateng /data/service/oceanbase
 ```
 
@@ -213,26 +213,7 @@ sudo systemctl enable oceanbase
 
 
 
-## 添加节点
-
-**添加第 2 个节点**
-
-```
-observer \
-  -I 10.244.250.31 \
-  -p 2881 \
-  -P 2882 \
-  -z zone2 \
-  -d /data/service/oceanbase \
-  -r '10.244.250.30:2882,10.244.250.31:2882' \
-  -c 1 \
-  -n AtengOceanBase \
-  -l WARN \
-  -o "memory_limit=16G,system_memory=4G,datafile_size=100G,syslog_level=WARN,enable_syslog_recycle=true,max_syslog_file_count=10,enable_sql_audit=false"
-```
-
--   -r '10.244.250.30:2882' ：这里仍然只写 **已有 RS 列表**（即第一个节点）
--   -c 1 ： 必须和第一个节点 cluster_id 一致！
+## 添加节点2
 
 **连接第一个节点**
 
@@ -244,23 +225,80 @@ obclient -h10.244.250.30 -P2881 -uroot@sys -A
 
 ```
 ALTER SYSTEM ADD ZONE 'zone2';
-SELECT * FROM oceanbase.DBA_OB_ZONES;
+ALTER SYSTEM START ZONE zone2;
+obclient [(none)]> SELECT * FROM oceanbase.DBA_OB_ZONES;
++-------+----------------------------+----------------------------+--------+-----+----------------+-----------+
+| ZONE  | CREATE_TIME                | MODIFY_TIME                | STATUS | IDC | REGION         | TYPE      |
++-------+----------------------------+----------------------------+--------+-----+----------------+-----------+
+| zone1 | 2025-12-13 12:28:58.222132 | 2025-12-13 12:28:58.223219 | ACTIVE |     | default_region | ReadWrite |
+| zone2 | 2025-12-13 12:47:02.238336 | 2025-12-13 13:27:46.752989 | ACTIVE |     | default_region | ReadWrite |
++-------+----------------------------+----------------------------+--------+-----+----------------+-----------+
+```
+
+**添加第 2 个节点**
+
+```
+observer \
+  -I 10.244.250.20 \
+  -p 2881 \
+  -P 2882 \
+  -z zone2 \
+  -d /data/service/oceanbase \
+  -r '10.244.250.30:2882' \
+  -c 2385569970 \
+  -n AtengOceanBase \
+  -l WARN \
+  -o "memory_limit=8G,system_memory=2G,datafile_size=10G,syslog_level=WARN,enable_syslog_recycle=true,max_syslog_file_count=10,enable_sql_audit=false"
+```
+
+-   -r '10.244.250.30:2882' ：这里仍然只写 **已有 RS 列表**（即第一个节点）
+-   -c 2385569970 ： 必须和第一个节点 cluster_id 一致！
+
+**连接第一个节点**
+
+```
+obclient -h10.244.250.30 -P2881 -uroot@sys -A
 ```
 
 **添加server**
 
 ```
-ALTER SYSTEM ADD SERVER '10.244.250.31:2882' ZONE 'zone2';
+ALTER SYSTEM ADD SERVER '10.244.250.20:2882' ZONE 'zone2';
 ```
 
-**查看集群信息**
+**查看集群集群**
 
 ```
--- 查看所有 server
-SELECT * FROM oceanbase.DBA_OB_SERVERS;
+obclient [(none)]> SELECT * FROM oceanbase.DBA_OB_SERVERS;
++---------------+----------+----+-------+----------+-----------------+--------+----------------------------+-----------+-----------------------+----------------------------+----------------------------+----------------------------------+-------------------+
+| SVR_IP        | SVR_PORT | ID | ZONE  | SQL_PORT | WITH_ROOTSERVER | STATUS | START_SERVICE_TIME         | STOP_TIME | BLOCK_MIGRATE_IN_TIME | CREATE_TIME                | MODIFY_TIME                | BUILD_VERSION                    | LAST_OFFLINE_TIME |
++---------------+----------+----+-------+----------+-----------------+--------+----------------------------+-----------+-----------------------+----------------------------+----------------------------+----------------------------------+-------------------+
+| 10.244.250.20 |     2882 |  7 | zone2 |     2881 | NO              | ACTIVE | 2025-12-13 13:30:20.257646 | NULL      | NULL                  | 2025-12-13 13:30:11.838043 | 2025-12-13 13:30:22.264169 | 4.4.1.0_1-(Dec 12 2025 08:21:10) | NULL              |
+| 10.244.250.30 |     2882 |  1 | zone1 |     2881 | YES             | ACTIVE | 2025-12-13 12:29:00.586512 | NULL      | NULL                  | 2025-12-13 12:28:59.190251 | 2025-12-13 12:29:02.576890 | 4.4.1.0_1-(Dec 12 2025 08:21:10) | NULL              |
++---------------+----------+----+-------+----------+-----------------+--------+----------------------------+-----------+-----------------------+----------------------------+----------------------------+----------------------------------+-------------------+
+```
 
--- 查看 zone 信息
-SELECT * FROM oceanbase.DBA_OB_ZONES;
+## 添加节点3
+
+**连接第一个节点**
+
+```
+obclient -h10.244.250.30 -P2881 -uroot@sys -A
+```
+
+**创建新的 Zone**
+
+```
+ALTER SYSTEM ADD ZONE 'zone3';
+ALTER SYSTEM START ZONE zone3;
+obclient [(none)]> SELECT * FROM oceanbase.DBA_OB_ZONES;
++-------+----------------------------+----------------------------+--------+-----+----------------+-----------+
+| ZONE  | CREATE_TIME                | MODIFY_TIME                | STATUS | IDC | REGION         | TYPE      |
++-------+----------------------------+----------------------------+--------+-----+----------------+-----------+
+| zone1 | 2025-12-13 12:28:58.222132 | 2025-12-13 12:28:58.223219 | ACTIVE |     | default_region | ReadWrite |
+| zone2 | 2025-12-13 12:47:02.238336 | 2025-12-13 13:27:46.752989 | ACTIVE |     | default_region | ReadWrite |
+| zone3 | 2025-12-13 13:32:36.270993 | 2025-12-13 13:32:36.868233 | ACTIVE |     | default_region | ReadWrite |
++-------+----------------------------+----------------------------+--------+-----+----------------+-----------+
 ```
 
 **添加第 3 个节点**
@@ -273,32 +311,60 @@ observer \
   -p 2881 -P 2882 \
   -z zone3 \
   -d /data/service/oceanbase \
-  -r '10.244.250.30:2882' \   # 仍只需指向任一已有 RS 节点
+  -r '10.244.250.30:2882' \
   -c 2385569970 \
   -n AtengOceanBase \
   -l WARN \
-  -o "memory_limit=16G,system_memory=4G,datafile_size=100G,..."
+  -o "memory_limit=8G,system_memory=2G,datafile_size=10G,syslog_level=WARN,enable_syslog_recycle=true,max_syslog_file_count=10,enable_sql_audit=false"
 ```
 
-**查询服务器列表**
+**连接第一个节点**
 
 ```
-SELECT * FROM oceanbase.DBA_OB_SERVERS;
+obclient -h10.244.250.30 -P2881 -uroot@sys -A
 ```
 
-**扩容后：调整租户副本数（让数据分布到新节点）**
-
-假设你之前创建了一个租户 `ateng`，默认可能只有 1 个副本（在第一个节点）。
-
-现在要让它变成 3 副本（分布在 3 个 zone）：
+**添加server**
 
 ```
--- 修改资源池单元数（先确保有足够 Unit）
-ALTER RESOURCE POOL pool_ateng UNIT_NUM = 3;
-
--- 修改租户 locality（指定 3 个 zone 各 1 副本）
-ALTER TENANT ateng LOCALITY = 'F@zone1,F@zone2,F@zone3';
+ALTER SYSTEM ADD SERVER '10.244.250.32:2882' ZONE 'zone3';
 ```
+
+**查询集群列表**
+
+```
+obclient [(none)]> SELECT * FROM oceanbase.DBA_OB_SERVERS;
++---------------+----------+----+-------+----------+-----------------+--------+----------------------------+-----------+-----------------------+----------------------------+----------------------------+----------------------------------+-------------------+
+| SVR_IP        | SVR_PORT | ID | ZONE  | SQL_PORT | WITH_ROOTSERVER | STATUS | START_SERVICE_TIME         | STOP_TIME | BLOCK_MIGRATE_IN_TIME | CREATE_TIME                | MODIFY_TIME                | BUILD_VERSION                    | LAST_OFFLINE_TIME |
++---------------+----------+----+-------+----------+-----------------+--------+----------------------------+-----------+-----------------------+----------------------------+----------------------------+----------------------------------+-------------------+
+| 10.244.250.20 |     2882 |  7 | zone2 |     2881 | NO              | ACTIVE | 2025-12-13 13:30:20.257646 | NULL      | NULL                  | 2025-12-13 13:30:11.838043 | 2025-12-13 13:30:22.264169 | 4.4.1.0_1-(Dec 12 2025 08:21:10) | NULL              |
+| 10.244.250.30 |     2872 |  8 | zone3 |     2871 | NO              | ACTIVE | NULL                       | NULL      | NULL                  | 2025-12-13 13:36:26.769543 | 2025-12-13 13:36:26.769543 | 4.4.1.0_1-(Dec 12 2025 08:21:10) | NULL              |
+| 10.244.250.30 |     2882 |  1 | zone1 |     2881 | YES             | ACTIVE | 2025-12-13 12:29:00.586512 | NULL      | NULL                  | 2025-12-13 12:28:59.190251 | 2025-12-13 12:29:02.576890 | 4.4.1.0_1-(Dec 12 2025 08:21:10) | NULL              |
++---------------+----------+----+-------+----------+-----------------+--------+----------------------------+-----------+-----------------------+----------------------------+----------------------------+----------------------------------+-------------------+
+```
+
+
+
+## 创建新资源池
+
+**新建更大的 UNIT**
+
+```
+CREATE RESOURCE UNIT unit_big
+MAX_CPU = 2,
+MEMORY_SIZE = '6G';
+```
+
+**新建资源池（UNIT_NUM=3）**
+
+```
+CREATE RESOURCE POOL pool_big
+UNIT = 'unit_big',
+UNIT_NUM = 1,
+ZONE_LIST = ('zone1','zone2','zone3');
+```
+
+
 
 ## 创建obproxy
 
