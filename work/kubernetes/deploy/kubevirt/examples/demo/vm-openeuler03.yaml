@@ -35,10 +35,10 @@ spec:
         kubernetes.io/hostname: server03.lingo.local
       domain:
         cpu:
-          cores: 4
+          cores: 12
           model: host-passthrough
         memory:
-          guest: 8Gi
+          guest: 32Gi
         resources:
           overcommitGuestOverhead: true
         devices:
@@ -65,7 +65,7 @@ spec:
           image: swr.cn-north-1.myhuaweicloud.com/kongyu/kubevirt/linux:openeuler-24.03-lts-x86_64
       - name: emptydisk
         emptyDisk:
-          capacity: 100Gi
+          capacity: 500Gi
       - name: cloudinitdisk
         cloudInitNoCloud:
           userData: |

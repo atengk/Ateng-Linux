@@ -144,6 +144,9 @@
       - [1.x安装文档](/work/service/opensearch/v1.3.19/)
       - [2.x安装文档](/work/service/opensearch/v2.18.0/)
       - [使用文档](/work/service/opensearch/OPS.md)
+    - OceanBase
+      - [编译文档](/work/service/oceanbase/BUILD)
+      - [安装文档](/work/service/oceanbase/)
   - 消息队列服务
     - RabbitMQ
       - [安装文档](/work/service/rabbitmq/)
