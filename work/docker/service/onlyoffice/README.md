@@ -9,27 +9,26 @@
 **下载镜像**
 
 ```
-docker pull linuxserver/onlyoffice:9.1.0
+docker pull onlyoffice/documentserver:9.2
 ```
 
 **推送到仓库**
 
 ```
-docker tag linuxserver/onlyoffice:9.1.0 registry.lingo.local/service/onlyoffice:9.1.0
-docker push registry.lingo.local/service/onlyoffice:9.1.0
+docker tag onlyoffice/documentserver:9.2 registry.lingo.local/service/onlyoffice-documentserver:9.2
+docker push registry.lingo.local/service/onlyoffice-documentserver:9.2
 ```
 
 **保存镜像**
 
 ```
-docker save registry.lingo.local/service/onlyoffice:9.1.0 | gzip -c > image-onlyoffice_9.1.0.tar.gz
+docker save registry.lingo.local/service/onlyoffice-documentserver:9.2 | gzip -c > image-onlyoffice-documentserver_9.2.tar.gz
 ```
 
 **创建目录**
 
 ```
-sudo mkdir -p /data/container/onlyoffice/
-sudo chown -R 1001:1001 /data/container/onlyoffice
+sudo mkdir -p /data/container/onlyoffice/{data,logs,lib,db}
 ```
 
 **创建配置文件**
@@ -42,13 +41,14 @@ sudo chown -R 1001:1001 /data/container/onlyoffice
 
 ```
 docker run -d --name ateng-onlyoffice \
-  -p 20046:3000 -p 20047:3001 \
-  --restart=always --shm-size="1gb" \
-  -v /data/container/onlyoffice:/config \
-  -e PUID=1001 \
-  -e PGID=1001 \
+  -p 20046:80 --restart=always \
+  -v /data/container/onlyoffice/logs:/var/log/onlyoffice \
+  -v /data/container/onlyoffice/data:/var/www/onlyoffice/Data \
+  -v /data/container/onlyoffice/lib:/var/lib/onlyoffice \
+  -v /data/container/onlyoffice/db:/var/lib/postgresql \
+  -e JWT_SECRET=Admin@123 \
   -e TZ=Asia/Shanghai \
-  registry.lingo.local/service/onlyoffice:9.1.0
+  registry.lingo.local/service/onlyoffice-documentserver:9.2
 ```
 
 **查看日志**
@@ -62,13 +62,13 @@ docker logs -f ateng-onlyoffice
 进入容器
 
 ```
-docker exec -it ateng-onlyoffice bash
+docker exec -it ateng-onlyoffice-documentserver bash
 ```
 
 访问服务
 
 ```
-Address: https://192.168.1.12:20047
+Address: https://192.168.1.12:20046
 ```
 
 **删除服务**
