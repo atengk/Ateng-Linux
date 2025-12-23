@@ -7,40 +7,41 @@ RustFS 是一款简单、高效、分布式的对象存储。 同时，也是一
 **下载镜像**
 
 ```
-docker pull rustfs/rustfs:alpha
+docker pull rustfs/rustfs:1.0.0-alpha.76
 ```
 
 **推送到仓库**
 
 ```
-docker tag rustfs/rustfs:alpha registry.lingo.local/bitnami/rustfs:alpha
-docker push registry.lingo.local/bitnami/rustfs:alpha
+docker tag rustfs/rustfs:1.0.0-alpha.76 registry.lingo.local/service/rustfs:1.0.0
+docker push registry.lingo.local/service/rustfs:1.0.0
 ```
 
 **保存镜像**
 
 ```
-docker save registry.lingo.local/bitnami/rustfs:alpha | gzip -c > image-rustfs_alpha.tar.gz
+docker save registry.lingo.local/service/rustfs:1.0.0 | gzip -c > image-rustfs_1.0.0.tar.gz
 ```
 
 **创建目录**
 
 ```
 sudo mkdir -p /data/container/rustfs/data
-sudo chown -R 1001 /data/container/rustfs
+sudo chown -R 10001:10001 /data/container/rustfs
 ```
 
 **运行服务**
 
 ```
 docker run -d --name ateng-rustfs \
-  -p 20031:9000 --restart=always \
-  -v /data/container/rustfs:/data \
+  -p 20031:9000 -p 20032:9001 --restart=always \
+  -v /data/container/rustfs/data:/data \
   -e RUSTFS_VOLUMES=/data \
   -e RUSTFS_ACCESS_KEY=admin \
   -e RUSTFS_SECRET_KEY=Admin@123 \
+  -e RUSTFS_CONSOLE_ENABLE=true \
   -e TZ=Asia/Shanghai \
-  registry.lingo.local/bitnami/rustfs:alpha
+  registry.lingo.local/service/rustfs:1.0.0
 ```
 
 **查看日志**
@@ -52,7 +53,8 @@ docker logs -f ateng-rustfs
 **使用服务**
 
 ```
-Address: http://192.168.1.12:20031
+API URL: http://192.168.1.114:20031
+Web URL: http://192.168.1.114:20032
 Username: admin
 Password: Admin@123
 ```
