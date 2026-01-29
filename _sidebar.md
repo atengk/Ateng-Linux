@@ -195,6 +195,7 @@
         - [OnlyOffice](/work/docker/service/onlyoffice/)
         - [TiDB](/work/docker/service/tidb/)
         - [OceanBase CE](/work/docker/service/oceanbase/)
+        - [BaseMetas Fileview](/work/docker/service/basemetas-fileview/)
 - Kubernetes
     - 使用文档
         - [K8S使用文档](/work/kubernetes/OPS.md)
