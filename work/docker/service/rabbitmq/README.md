@@ -73,6 +73,22 @@ docker run -d --name ateng-rabbitmq \
   registry.lingo.local/bitnami/rabbitmq:4.0.2
 ```
 
+MQTT + STOMP
+
+```
+docker run -d --name ateng-rabbitmq \
+  -p 20009:5672 -p 20010:15672 -p 20013:1883 -p 20014:15675 -p 20015:61613 --restart=always \
+  -v /data/container/rabbitmq/data:/bitnami/rabbitmq/mnesia \
+  -e RABBITMQ_USERNAME=admin \
+  -e RABBITMQ_PASSWORD=Admin@123 \
+  -e RABBITMQ_MANAGEMENT_ALLOW_WEB_ACCESS=true \
+  -e RABBITMQ_PLUGINS="rabbitmq_management, rabbitmq_web_stomp, rabbitmq_auth_backend_ldap, rabbitmq_delayed_message_exchange, rabbitmq_mqtt, rabbitmq_web_mqtt" \
+  -e RABBITMQ_COMMUNITY_PLUGINS="http://10.1.24.3:20034/kongyu/plugins/rabbitmq_delayed_message_exchange-4.0.2.ez" \
+  -e RABBITMQ_ERL_COOKIE=u8B1rlnzSckNvtkNr7kRAU4NVt8F6OtU \
+  -e TZ=Asia/Shanghai \
+  registry.lingo.local/bitnami/rabbitmq:4.0.2
+```
+
 **查看日志**
 
 ```
@@ -84,6 +100,9 @@ docker logs -f ateng-rabbitmq
 ```
 AMQP URL: 192.168.1.114:20009
 Web URL: http://192.168.1.114:20010/
+MQTT TCP URL: 192.168.1.114:20013
+STOMP over WebSocket URL: 192.168.1.114:20014
+STOMP over TCP: 192.168.1.114:20015
 Username: admin
 Password: Admin@123
 ```
