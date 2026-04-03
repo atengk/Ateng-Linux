@@ -2,9 +2,13 @@
 
 创建证书
 
+<div v-pre>
+
 > 注意secret的名称必须为以下的配置
 >
 > secretName: {{ printf "%s-tls" .Values.ingress.core.hostname }}
+
+</div>
 
 ```
 ## cfssl方式

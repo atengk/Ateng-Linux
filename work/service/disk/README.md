@@ -27,8 +27,6 @@ g → n → 回车 → 回车 → +10G → w
 fdisk /dev/sdb
 ```
 
-![image-20241219211608853](./assets/image-20241219211608853.png)
-
 
 
 **刷新分区表**
@@ -43,8 +41,6 @@ partprobe /dev/sdb
 lsblk -f /dev/sdb
 ```
 
-![image-20241219211812085](./assets/image-20241219211812085.png)
-
 
 
 #### MBR分区表（扩展+逻辑分区）
@@ -57,8 +53,6 @@ n → e → 回车 → 回车 → 回车 → n → l → 回车 → +10G → w
 fdisk /dev/sdb
 ```
 
-![image-20241219211907947](./assets/image-20241219211907947.png)
-
 **刷新分区表**
 
 ```
@@ -70,8 +64,6 @@ partprobe /dev/sdb
 ```
 lsblk /dev/sdb
 ```
-
-![image-20241219211944135](./assets/image-20241219211944135.png)
 
 ### parted命令
 
@@ -106,8 +98,6 @@ parted /dev/sdb
 (parted) p
 ```
 
-![image-20241219222102009](./assets/image-20241219222102009.png)
-
 **退出**
 
 ```
@@ -125,8 +115,6 @@ partprobe /dev/sdb
 ```
 lsblk /dev/sdb
 ```
-
-![image-20241219222152710](./assets/image-20241219222152710.png)
 
 #### 非交互模式
 
@@ -157,8 +145,6 @@ partprobe /dev/sdb
 lsblk /dev/sdb
 ```
 
-![image-20241219222311870](./assets/image-20241219222311870.png)
-
 ### 使用磁盘
 
 #### 格式化磁盘
@@ -174,8 +160,6 @@ mkfs.xfs -f /dev/sdb1
 ```
 lsblk -f /dev/sdb
 ```
-
-![image-20241219222439121](./assets/image-20241219222439121.png)
 
 #### 挂载磁盘
 
@@ -196,8 +180,6 @@ echo "/dev/sdb1 /mnt xfs defaults,nofail 0 0" >> /etc/fstab
 ```
 df -hT /mnt
 ```
-
-![image-20241219222545829](./assets/image-20241219222545829.png)
 
 ### 其他磁盘操作
 
@@ -276,8 +258,6 @@ yum install lvm2 -y
 ```
 lsblk /dev/sdb
 ```
-
-![image-20241219223721370](./assets/image-20241219223721370.png)
 
 
 

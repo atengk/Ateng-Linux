@@ -51,8 +51,6 @@ docker logs -f ateng-mind-map
 URL: http://192.168.1.12:20031
 ```
 
-![image-20250516164701867](./assets/image-20250516164701867.png)
-
 **删除服务**
 
 停止服务

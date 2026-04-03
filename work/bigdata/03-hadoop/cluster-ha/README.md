@@ -177,7 +177,7 @@ EOF
 需要修改以下配置：
 
 - dfs.nameservices：hdfs的nameservice
-- dfs.ha.namenodes.<nameservices>：NameNode
+- dfs.ha.namenodes.[nameservices]：NameNode
 - dfs.data.dir：HDFS数据目录
 - dfs.namenode.name.dir：NameNode元数据存储目录
 - dfs.replication: HDFS默认数据块副本数量

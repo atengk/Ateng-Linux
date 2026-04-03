@@ -4,7 +4,9 @@
 
 **添加服务器配置**
 
+```
 mcli config host add <主机名> <服务器地址> <用户名> <密码> --api s3v4
+```
 
 ```
 mcli config host add minio http://192.168.1.201:9000 admin Admin@123 --api s3v4
@@ -14,7 +16,9 @@ mcli config host add minio http://192.168.1.201:9000 admin Admin@123 --api s3v4
 
 也可以通过添加服别名的方式配置服务器
 
+```
 mcli alias set <主机名> <服务器地址> <用户名> <密码>
+```
 
 ```
 mcli alias set myminio http://minio-server:9000 YOUR-ACCESS-KEY YOUR-SECRET-KEY
@@ -22,7 +26,9 @@ mcli alias set myminio http://minio-server:9000 YOUR-ACCESS-KEY YOUR-SECRET-KEY
 
 **查看服务器信息**
 
+```
 mcli admin info <ALIAS>
+```
 
 ```
 mcli admin info minio
