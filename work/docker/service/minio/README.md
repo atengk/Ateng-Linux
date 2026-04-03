@@ -7,20 +7,20 @@ MinIO 是一个高性能的对象存储系统，兼容 Amazon S3 API，专为存
 **下载镜像**
 
 ```
-docker pull bitnami/minio:2024.11.7
+docker pull pgsty/minio:RELEASE.2026-03-25T00-00-00Z
 ```
 
 **推送到仓库**
 
 ```
-docker tag bitnami/minio:2024.11.7 registry.lingo.local/bitnami/minio:2024.11.7
-docker push registry.lingo.local/bitnami/minio:2024.11.7
+docker tag pgsty/minio:RELEASE.2026-03-25T00-00-00Z registry.lingo.local/service/minio:RELEASE.2026-03-25T00-00-00Z
+docker push registry.lingo.local/service/minio:RELEASE.2026-03-25T00-00-00Z
 ```
 
 **保存镜像**
 
 ```
-docker save registry.lingo.local/bitnami/minio:2024.11.7 | gzip -c > image-minio_2024.11.7.tar.gz
+docker save registry.lingo.local/service/minio:RELEASE.2026-03-25T00-00-00Z | gzip -c > image-minio_RELEASE.2026-03-25T00-00-00Z.tar.gz
 ```
 
 **创建目录**
@@ -35,12 +35,12 @@ sudo chown -R 1001 /data/container/minio
 ```
 docker run -d --name ateng-minio \
   -p 20006:9000 -p 20007:9001 --restart=always \
-  -v /data/container/minio:/bitnami/minio/data \
+  -v /data/container/minio:/data \
   -e MINIO_ROOT_USER=admin \
   -e MINIO_ROOT_PASSWORD=Admin@123 \
-  -e MINIO_DEFAULT_BUCKETS="bucket01:public,bucket02" \
   -e TZ=Asia/Shanghai \
-  registry.lingo.local/bitnami/minio:2024.11.7
+  registry.lingo.local/service/minio:RELEASE.2026-03-25T00-00-00Z \
+  server --address ':9000' --console-address ':9001' /data
 ```
 
 **查看日志**
