@@ -8,7 +8,7 @@ etcd 是一个分布式键值存储系统，专为分布式系统提供一致性
 
 ## 前置条件
 
-- 参考：[基础配置](/work/service/00-basic/)
+- 参考：[基础配置](/work/service/00-basic/README.md)
 
 **服务器节点信息**
 

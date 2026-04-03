@@ -8,7 +8,7 @@ FoundationDB 是一个开源的分布式数据库系统，最初由 FoundationDB
 
 ## 前置条件
 
-- 参考：[基础配置](/work/service/00-basic/)
+- 参考：[基础配置](/work/service/00-basic/README.md)
 
 ## 单节点安装
 

@@ -35,9 +35,9 @@ Ceph 是一个开源的分布式存储系统，支持对象存储、块存储和
 
 ## 前置条件
 
-- 基础配置，安装文档参考：[链接](/work/service/00-basic/)
-- 需要 Python3，安装文档参考：[链接](/work/service/python/v3.13.3/)，系统已存在可以忽略
-- 需要 Docker，安装文档参考：[链接](/work/docker/deploy/v27.3.1/)，系统已存在可以忽略
+- 基础配置，安装文档参考：[链接](/work/service/00-basic/README.md)
+- 需要 Python3，安装文档参考：[链接](/work/service/python/v3.13.3/README.md)，系统已存在可以忽略
+- 需要 Docker，安装文档参考：[链接](/work/docker/deploy/v27.3.1/README.md)，系统已存在可以忽略
 
 版本说明
 
@@ -68,7 +68,7 @@ sudo yum install -y curl chrony lvm2
 
 **时间同步**
 
-配置时间同步，详情参考时间同步文档：[链接](/work/service/chrony/)
+配置时间同步，详情参考时间同步文档：[链接](/work/service/chrony/README.md)
 
 ```
 sudo tee /etc/chrony.conf <<EOF

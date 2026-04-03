@@ -6,7 +6,7 @@ MinIO 是一个高性能的对象存储系统，兼容 Amazon S3 API，专为存
 
 ## 前置条件
 
-- 参考：[基础配置](/work/service/00-basic/)
+- 参考：[基础配置](/work/service/00-basic/README.md)
 
 ## 单机模式
 

@@ -8,7 +8,7 @@ Keepalived 是一款用于实现高可用性和负载均衡的服务，主要通
 
 ## 前置条件
 
-- 参考：[基础配置](/work/service/00-basic/)
+- 参考：[基础配置](/work/service/00-basic/README.md)
 
 
 

@@ -8,8 +8,10 @@
 !*/
  
 #指定不忽略的文件
+!*.vue
 !*.css
 !*.js
+!*.ts
 !*.html
 !*.gif
 !*.ico
@@ -33,4 +35,10 @@ tmp/
 temp/
 temporary/
 other/
-
+target/
+logs/
+.idea/
+.vscode/
+node_modules/
+dist/
+cache/

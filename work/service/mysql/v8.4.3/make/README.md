@@ -1,6 +1,6 @@
 # 编译安装MySQL
 
-**安装前先参考[前置条件](/work/service/00-basic/)**
+**安装前先参考[前置条件](/work/service/00-basic/README.md)**
 
 编译安装MySQL，需要注意以下事项
 

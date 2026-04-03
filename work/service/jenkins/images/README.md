@@ -8,7 +8,7 @@
 
 **JDK**
 
-- [OpenJDK21安装文档](/work/service/openjdk/openjdk21/)
+- [OpenJDK21安装文档](/work/service/openjdk/openjdk21/README.md)
 
 建议在官方的Web界面下载：[地址](https://adoptium.net/zh-CN/temurin/releases/?os=linux&arch=x64&package=jdk&version=21)
 
@@ -20,7 +20,7 @@ wget https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.5
 
 **Maven**
 
-- [Apache Maven安装文档](/work/service/maven/v3.9.9/)
+- [Apache Maven安装文档](/work/service/maven/v3.9.9/README.md)
 
 ```shell
 wget https://dlcdn.apache.org/maven/maven-3/3.9.9/binaries/apache-maven-3.9.9-bin.tar.gz
@@ -28,7 +28,7 @@ wget https://dlcdn.apache.org/maven/maven-3/3.9.9/binaries/apache-maven-3.9.9-bi
 
 **Node.js**
 
-- [Node.js安装文档](/work/service/nodejs/v22.14.0/)
+- [Node.js安装文档](/work/service/nodejs/v22.14.0/README.md)
 
 ```shell
 wget https://nodejs.org/dist/v22.14.0/node-v22.14.0-linux-x64.tar.xz
@@ -42,7 +42,7 @@ wget https://go.dev/dl/go1.24.2.linux-amd64.tar.gz
 
 **Docker**
 
-- [Docker安装文档](/work/docker/deploy/v27.3.1/)
+- [Docker安装文档](/work/docker/deploy/v27.3.1/README.md)
 
 ```
 wget https://download.docker.com/linux/static/stable/x86_64/docker-27.3.1.tgz
@@ -64,7 +64,7 @@ wget https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2F
 
 **Helm**
 
-- [Helm安装文档](/work/kubernetes/deploy/helm/)
+- [Helm安装文档](/work/kubernetes/deploy/helm/README.md)
 
 ```shell
 wget https://get.helm.sh/helm-v3.16.2-linux-amd64.tar.gz

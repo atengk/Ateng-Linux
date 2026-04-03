@@ -654,7 +654,7 @@ pipeline {
 参考文档：
 
 - [Jenkins使用文档](/work/service/jenkins/OPS.md)
-- [Jenkins Agent镜像构建](/work/service/jenkins/images/)
+- [Jenkins Agent镜像构建](/work/service/jenkins/images/README.md)
 
 
 
@@ -698,7 +698,7 @@ pipeline {
 
 #### Docker
 
-更多的Dockerfile用法参考：[JDK和应用](/work/docker/dockerfile/java/)
+更多的Dockerfile用法参考：[JDK和应用](/work/docker/dockerfile/java/README.md)
 
 **编辑 Dockerfile 文件**
 
@@ -920,7 +920,7 @@ patchesStrategicMerge:
 
 #### 配置templates
 
-自定义构建容器镜像，用于Jenkins Agent的镜像，参考文档：[Agent镜像构建](/work/service/jenkins/images/)
+自定义构建容器镜像，用于Jenkins Agent的镜像，参考文档：[Agent镜像构建](/work/service/jenkins/images/README.md)
 
 以下示例是直接用的all这个镜像，如果需要使用特定的镜像请自行设置
 

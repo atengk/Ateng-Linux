@@ -89,7 +89,7 @@ Kubernetes
 
 #### Git
 
-- [安装文档](/work/service/git/v2.49.0/)
+- [安装文档](/work/service/git/v2.49.0/README.md)
 
 **Jenkins中配置**
 
@@ -99,7 +99,7 @@ Kubernetes
 
 #### JDK
 
-- [安装文档](/work/service/openjdk/openjdk21/)
+- [安装文档](/work/service/openjdk/openjdk21/README.md)
 
 **下载软件包**
 
@@ -148,7 +148,7 @@ pipeline {
 
 #### Maven
 
-- [安装文档](/work/service/maven/v3.9.9/)
+- [安装文档](/work/service/maven/v3.9.9/README.md)
 
 **下载软件包**
 
@@ -222,7 +222,7 @@ pipeline {
 
 需要安装 `NodeJS` 插件
 
-- [安装文档](/work/service/nodejs/v22.14.0/)
+- [安装文档](/work/service/nodejs/v22.14.0/README.md)
 
 **下载软件包**
 
@@ -273,7 +273,7 @@ pipeline {
 
 需要安装 `Docker、Docker Pipeline` 插件
 
-- [安装文档](/work/docker/deploy/v27.3.1/)
+- [安装文档](/work/docker/deploy/v27.3.1/README.md)
 
 **下载软件包**
 
@@ -2836,7 +2836,7 @@ git push -u origin master
 
 ### Docker文件准备
 
-更多的Dockerfile用法参考：[JDK和应用](/work/docker/dockerfile/java/)
+更多的Dockerfile用法参考：[JDK和应用](/work/docker/dockerfile/java/README.md)
 
 **编辑 Dockerfile 文件**
 
@@ -3440,7 +3440,7 @@ git push -u origin master
 
 #### Docker
 
-更多的Dockerfile用法参考：[JDK和应用](/work/docker/dockerfile/java/)
+更多的Dockerfile用法参考：[JDK和应用](/work/docker/dockerfile/java/README.md)
 
 **编辑 Dockerfile 文件**
 

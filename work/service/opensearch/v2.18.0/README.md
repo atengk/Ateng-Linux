@@ -8,7 +8,7 @@ OpenSearch2是ElasticSearch8的分支，起源于Elastic的开源版本，因许
 
 ## 前置条件
 
-- 参考：[基础配置](/work/service/00-basic/)
+- 参考：[基础配置](/work/service/00-basic/README.md)
 
 ## 单节点模式
 

@@ -6,7 +6,7 @@ Nginx 是一个高性能的开源 Web 服务器、反向代理服务器和负载
 
 ## 前置条件
 
-- 参考：[基础配置](/work/service/00-basic/)
+- 参考：[基础配置](/work/service/00-basic/README.md)
 
 ## 下载软件包
 

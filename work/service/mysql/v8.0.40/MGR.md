@@ -11,7 +11,7 @@ MySQL 是一个流行的开源关系型数据库管理系统（RDBMS），广泛
 
 ## 前置条件
 
-- 参考：[基础配置](/work/service/00-basic/)
+- 参考：[基础配置](/work/service/00-basic/README.md)
 
 服务器信息，推荐使用奇数节点
 

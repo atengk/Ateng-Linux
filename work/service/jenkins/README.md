@@ -4,8 +4,8 @@ Jenkins 是一个开源的自动化服务器，广泛用于实现持续集成（
 
 - [官网链接](https://www.jenkins.io/)
 
-- [Docker安装Jenkins文档](/work/docker/service/jenkins/)
-- [Kubernetes安装Jenkins文档](/work/kubernetes/service/jenkins/v2.492.2/)
+- [Docker安装Jenkins文档](/work/docker/service/jenkins/README.md)
+- [Kubernetes安装Jenkins文档](/work/kubernetes/service/jenkins/v2.492.2/README.md)
 
 
 
@@ -17,14 +17,14 @@ Jenkins 是一个开源的自动化服务器，广泛用于实现持续集成（
 
 需要安装JDK，通过JDK启动Jenkins
 
-- [JDK安装文档](/work/service/openjdk/openjdk21/)
+- [JDK安装文档](/work/service/openjdk/openjdk21/README.md)
 
 其他工具安装参考文档
 
-- [Maven安装文档](/work/service/maven/v3.9.9/)
-- [Git安装文档](/work/service/git/v2.49.0/)
-- [NVM 和 Node.js 安装文档](/work/service/nvm/v0.40.2/)
-- [Docker安装文档](/work/docker/deploy/v27.3.1/)
+- [Maven安装文档](/work/service/maven/v3.9.9/README.md)
+- [Git安装文档](/work/service/git/v2.49.0/README.md)
+- [NVM 和 Node.js 安装文档](/work/service/nvm/v0.40.2/README.md)
+- [Docker安装文档](/work/docker/deploy/v27.3.1/README.md)
 
 ### 配置Jenkins
 
@@ -139,15 +139,15 @@ Password: xxx
 ### 前置需要
 
 - Jenkins 主节点已安装并运行
-- 从节点（Agent）机器已安装 Java（通常需要 Java 8+），[JDK安装文档](/work/service/openjdk/openjdk21/)
+- 从节点（Agent）机器已安装 Java（通常需要 Java 8+），[JDK安装文档](/work/service/openjdk/openjdk21/README.md)
 - 主节点和从节点网络互通
 
 其他工具安装参考文档
 
-- [Maven安装文档](/work/service/maven/v3.9.9/)
-- [Git安装文档](/work/service/git/v2.49.0/)
-- [NVM 和 Node.js 安装文档](/work/service/nvm/v0.40.2/)
-- [Docker安装文档](/work/docker/deploy/v27.3.1/)
+- [Maven安装文档](/work/service/maven/v3.9.9/README.md)
+- [Git安装文档](/work/service/git/v2.49.0/README.md)
+- [NVM 和 Node.js 安装文档](/work/service/nvm/v0.40.2/README.md)
+- [Docker安装文档](/work/docker/deploy/v27.3.1/README.md)
 
 ### 添加节点
 
