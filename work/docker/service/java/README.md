@@ -2,7 +2,7 @@
 
 使用Docker运行Java应用
 
-- [构建镜像](/work/docker/dockerfile/java/)
+- [构建镜像](/work/docker/dockerfile/java/README)
 
 
 

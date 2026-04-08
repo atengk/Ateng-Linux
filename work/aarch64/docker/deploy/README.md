@@ -287,7 +287,7 @@ docker ps
 
 ### 配置TLS
 
-参考 [openssl创建证书](/work/service/tls/tls-openssl/) 文件生成证书和秘钥
+参考 [openssl创建证书](/work/service/tls/tls-openssl/README) 文件生成证书和秘钥
 
 - CA 根证书：ateng-ca.crt
 - 服务端证书：ateng-server.crt

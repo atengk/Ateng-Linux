@@ -3,10 +3,10 @@
 kkFileView为文件文档在线预览解决方案，该项目使用流行的spring boot搭建，易上手和部署，基本支持主流办公文档的在线预览，如doc,docx,xls,xlsx,ppt,pptx,pdf,txt,zip,rar,图片,视频,音频等等
 
 - [官网链接](https://www.kkview.cn/zh-cn/index.html)
-- [Git安装文档](/work/service/git/v2.49.0/)
-- [JDK安装文档](/work/service/openjdk/openjdk8/)
-- [Maven安装文档](/work/service/maven/v3.9.9/)
-- [Docker安装文档](/work/docker/deploy/v27.3.1/)
+- [Git安装文档](/work/service/git/v2.49.0/README)
+- [JDK安装文档](/work/service/openjdk/openjdk8/README)
+- [Maven安装文档](/work/service/maven/v3.9.9/README)
+- [Docker安装文档](/work/docker/deploy/v27.3.1/README)
 
 
 

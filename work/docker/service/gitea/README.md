@@ -6,7 +6,7 @@ Gitea 是一个轻量级、开源的 Git 代码托管平台，提供类似 GitHu
 
 **前提条件**
 
-- 需要 [postgresql](/work/docker/service/postgresql/) 数据库
+- 需要 [postgresql](/work/docker/service/postgresql/README) 数据库
 
 **下载镜像**
 

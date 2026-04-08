@@ -8,7 +8,7 @@
 
 **前提条件**
 
-- 需要 [mysql](/work/docker/service/mysql/) 数据库
+- 需要 [mysql](/work/docker/service/mysql/README) 数据库
 
 ```
 export MYSQL_PWD=Admin@123

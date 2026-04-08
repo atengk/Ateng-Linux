@@ -4,7 +4,7 @@ kkFileView为文件文档在线预览解决方案，该项目使用流行的spri
 
 - [官网链接](https://www.kkview.cn/zh-cn/index.html)
 
-- [镜像构建文档](/work/docker/dockerfile/kkfileview/v4.4.0/)
+- [镜像构建文档](/work/docker/dockerfile/kkfileview/v4.4.0/README)
 
 
 

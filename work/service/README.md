@@ -2,143 +2,143 @@
 
 ## 前提要求
 
-在进行服务部署之前，首先参考 [基础配置文档](/work/service/00-basic/README.md) 部分，再进行其他服务安装，
+在进行服务部署之前，首先参考 [基础配置文档](/work/service/00-basic/README) 部分，再进行其他服务安装，
 
 ## 部署服务目录
 
 - 安全管理
     - 用户管理
-        - [用户管理](/work/service/security/user/README.md)
+        - [用户管理](/work/service/security/user/README)
     - OpenSSH
-        - [使用文档](/work/service/openssh/OPS.md)
-        - [升级服务](/work/service/openssh/v10.0/README.md)
+        - [使用文档](/work/service/openssh/OPS)
+        - [升级服务](/work/service/openssh/v10.0/README)
     - TLS证书
-        - [cfssl创建证书](/work/service/security/tls/tls-cfssl/v1.6.5/README.md)
-        - [openssl创建证书](/work/service/security/tls/tls-openssl/README.md)
+        - [cfssl创建证书](/work/service/security/tls/tls-cfssl/v1.6.5/README)
+        - [openssl创建证书](/work/service/security/tls/tls-openssl/README)
 - 存储服务
     - 网络文件共享 NFS
-        - [安装使用文档](work/service/nfs/README.md)
+        - [安装使用文档](/work/service/nfs/README)
     - 网络文件共享 Samba
-        - [安装使用文档](work/service/samba/README.md)
+        - [安装使用文档](/work/service/samba/README)
     - 网络文件共享 VSFTP
-        - [安装使用文档](work/service/ftp/README.md)
+        - [安装使用文档](/work/service/ftp/README)
     - 对象存储服务 MinIO
-        - [安装文档](/work/service/minio/v20241107/README.md)
-        - [使用文档](/work/service/minio/OPS.md)
+        - [安装文档](/work/service/minio/v20241107/README)
+        - [使用文档](/work/service/minio/OPS)
     - 分布式存储 JuiceFS
-        - [安装文档](/work/service/juicefs/v1.2.1/README.md)
-        - [使用文档](/work/service/juicefs/OPS.md)
+        - [安装文档](/work/service/juicefs/v1.2.1/README)
+        - [使用文档](/work/service/juicefs/OPS)
     - 备份工具 Restic
-        - [安装使用文档](/work/service/restic/README.md)
+        - [安装使用文档](/work/service/restic/README)
     - 分布式存储 Ceph
-        - [安装文档-Quincy](/work/service/ceph/quincy/README.md)
-        - [安装文档-Reef](/work/service/ceph/reef/README.md)
-        - [使用文档](/work/service/ceph/README.md)
+        - [安装文档-Quincy](/work/service/ceph/quincy/README)
+        - [安装文档-Reef](/work/service/ceph/reef/README)
+        - [使用文档](/work/service/ceph/README)
 - 数据库服务
     - MySQL
-        - [编译安装文档](/work/service/mysql/v8.4.3/make/README.md)
-        - [安装文档](/work/service/mysql/v8.4.3/README.md)
-        - [安装MGR集群](/work/service/mysql/v8.4.3/MGR.md)
-        - [使用文档](/work/service/mysql/OPS.md)
+        - [编译安装文档](/work/service/mysql/v8.4.3/make/README)
+        - [安装文档](/work/service/mysql/v8.4.3/README)
+        - [安装MGR集群](/work/service/mysql/v8.4.3/MGR)
+        - [使用文档](/work/service/mysql/OPS)
     - MariaDB Galera
-        - [安装文档](/work/service/mariadb/v11.4.4/README.md)
+        - [安装文档](/work/service/mariadb/v11.4.4/README)
     - Redis
-        - [编译文档](/work/service/redis/v8.2.2/BUILD.md)
-        - [安装文档](/work/service/redis/v8.2.2/README.md)
-        - [使用文档](/work/service/redis/OPS.md)
+        - [编译文档](/work/service/redis/v8.2.2/BUILD)
+        - [安装文档](/work/service/redis/v8.2.2/README)
+        - [使用文档](/work/service/redis/OPS)
     - PostgreSQL
-        - [编译安装文档](/work/service/postgresql/v17.2.0/README.md)
-        - [编译PostGIS](/work/service/postgresql/v17.2.0/postgis/README.md)
-        - [使用文档](/work/service/postgresql/OPS.md)
+        - [编译安装文档](/work/service/postgresql/v17.2.0/README)
+        - [编译PostGIS](/work/service/postgresql/v17.2.0/postgis/README)
+        - [使用文档](/work/service/postgresql/OPS)
     - ETCD
-        - [安装文档](/work/service/etcd/v3.5.17/README.md)
-        - [使用文档](/work/service/etcd/OPS.md)
+        - [安装文档](/work/service/etcd/v3.5.17/README)
+        - [使用文档](/work/service/etcd/OPS)
     - FoundationDB
-        - [安装文档](/work/service/foundationdb/v7.1.38/README.md)
-        - [使用文档](/work/service/foundationdb/OPS.md)
+        - [安装文档](/work/service/foundationdb/v7.1.38/README)
+        - [使用文档](/work/service/foundationdb/OPS)
     - ElasticSearch
-        - [安装单机模式](/work/service/elastic/elasticsearch/standalone/README.md)
-        - [安装集群模式](/work/service/elastic/elasticsearch/cluster/README.md)
+        - [安装单机模式](/work/service/elastic/elasticsearch/standalone/README)
+        - [安装集群模式](/work/service/elastic/elasticsearch/cluster/README)
     - OpenSearch
-        - [1.x安装文档](/work/service/opensearch/v1.3.19/README.md)
-        - [2.x安装文档](/work/service/opensearch/v2.18.0/README.md)
-        - [使用文档](/work/service/opensearch/OPS.md)
+        - [1.x安装文档](/work/service/opensearch/v1.3.19/README)
+        - [2.x安装文档](/work/service/opensearch/v2.18.0/README)
+        - [使用文档](/work/service/opensearch/OPS)
     - OceanBase
         - [编译文档](/work/service/oceanbase/BUILD)
-        - [安装文档](/work/service/oceanbase/README.md)
+        - [安装文档](/work/service/oceanbase/README)
 - 消息队列服务
     - RabbitMQ
-      - [安装文档](/work/service/rabbitmq/README.md)
-      - [使用文档](/work/service/rabbitmq/OPS.md)
+      - [安装文档](/work/service/rabbitmq/README)
+      - [使用文档](/work/service/rabbitmq/OPS)
 - Web服务
     - Nginx
-        - [安装文档](/work/service/nginx/v1.27.3/README.md)
-        - [使用文档](/work/service/nginx/OPS.md)
+        - [安装文档](/work/service/nginx/v1.27.3/README)
+        - [使用文档](/work/service/nginx/OPS)
     - OpenResty
-        - [安装文档](/work/service/openresty/v1.27.1.2/README.md)
-        - [使用文档](/work/service/openresty/OPS.md)
+        - [安装文档](/work/service/openresty/v1.27.1.2/README)
+        - [使用文档](/work/service/openresty/OPS)
     - Haproxy
-        - [安装文档](/work/service/haproxy/README.md)
-        - [使用文档](/work/service/haproxy/OPS.md)
+        - [安装文档](/work/service/haproxy/README)
+        - [使用文档](/work/service/haproxy/OPS)
     - TLS证书
-        - [cfssl创建证书](/work/service/tls/tls-cfssl/v1.6.5/README.md)
-        - [openssl创建证书](/work/service/tls/tls-openssl/README.md)
+        - [cfssl创建证书](/work/service/tls/tls-cfssl/v1.6.5/README)
+        - [openssl创建证书](/work/service/tls/tls-openssl/README)
 - CI/CD
     - DevOps - Jenkins
-        - [安装文档](/work/service/jenkins/README.md)
-        - [使用文档](/work/service/jenkins/OPS.md)
-        - [Agent镜像构建](/work/service/jenkins/images/README.md)
-        - [Agent镜像构建-使用builder](/work/service/jenkins/images/README_BUILER.md)
+        - [安装文档](/work/service/jenkins/README)
+        - [使用文档](/work/service/jenkins/OPS)
+        - [Agent镜像构建](/work/service/jenkins/images/README)
+        - [Agent镜像构建-使用builder](/work/service/jenkins/images/README_BUILER)
     - GitOps - Argo CD
-        - [安装文档](/work/service/argo-cd/README.md)
-        - [使用文档](/work/service/argo-cd/OPS.md)
+        - [安装文档](/work/service/argo-cd/README)
+        - [使用文档](/work/service/argo-cd/OPS)
 - 可观测
     - OTLP
-        - [OpenTelemetry](/work/service/opentelemetry/README.md)
-        - [Jaeger](/work/service/jaeger/README.md)
+        - [OpenTelemetry](/work/service/opentelemetry/README)
+        - [Jaeger](/work/service/jaeger/README)
 
     - 监控
-        - [Beszel服务器监控平台](/work/service/beszel/README.md)
-        - [1panel服务器管理面板](/work/service/1panel/README.md)
-        - [Prometheus](/work/service/prometheus/v3.2.1/README.md)
-        - [Grafana](/work/service/grafana/v11.5.3/README.md)
-        - [Alertmanager](/work/service/alertmanager/v0.28.1/README.md)
+        - [Beszel服务器监控平台](/work/service/beszel/README)
+        - [1panel服务器管理面板](/work/service/1panel/README)
+        - [Prometheus](/work/service/prometheus/v3.2.1/README)
+        - [Grafana](/work/service/grafana/v11.5.3/README)
+        - [Alertmanager](/work/service/alertmanager/v0.28.1/README)
 - 开发服务
     - OpenJDK
-        - [OpenJDK8](/work/service/openjdk/openjdk8/README.md)
-        - [OpenJDK11](/work/service/openjdk/openjdk11/README.md)
-        - [OpenJDK17](/work/service/openjdk/openjdk17/README.md)
-        - [OpenJDK21](/work/service/openjdk/openjdk21/README.md)
-        - [使用文档](/work/service/openjdk/OPS.md)
+        - [OpenJDK8](/work/service/openjdk/openjdk8/README)
+        - [OpenJDK11](/work/service/openjdk/openjdk11/README)
+        - [OpenJDK17](/work/service/openjdk/openjdk17/README)
+        - [OpenJDK21](/work/service/openjdk/openjdk21/README)
+        - [使用文档](/work/service/openjdk/OPS)
     - Apache Maven
-        - [安装文档](/work/service/maven/v3.9.9/README.md)
-        - [使用文档](/work/service/maven/OPS.md)
+        - [安装文档](/work/service/maven/v3.9.9/README)
+        - [使用文档](/work/service/maven/OPS)
     - Git
-        - [安装文档](/work/service/git/v2.49.0/README.md)
-        - [使用文档](/work/service/git/OPS.md)
+        - [安装文档](/work/service/git/v2.49.0/README)
+        - [使用文档](/work/service/git/OPS)
     - Node.js
-        - [安装文档](/work/service/nodejs/v22.14.0/README.md)
-        - [使用文档](/work/service/nodejs/OPS.md)
+        - [安装文档](/work/service/nodejs/v22.14.0/README)
+        - [使用文档](/work/service/nodejs/OPS)
     - Node.js 和 NVM
-        - [安装文档](/work/service/nvm/v0.40.2/README.md)
-        - [使用文档](/work/service/nvm/OPS.md)
+        - [安装文档](/work/service/nvm/v0.40.2/README)
+        - [使用文档](/work/service/nvm/OPS)
     - Python
-        - [安装文档](/work/service/python/v3.13.3/README.md)
-        - [使用文档](/work/service/python/OPS.md)
+        - [安装文档](/work/service/python/v3.13.3/README)
+        - [使用文档](/work/service/python/OPS)
     - SpringCloud Alibaba
         - [Nacos](/work/service/springcloudalibaba/nacos)
-        - [Sentinel](/work/service/springcloudalibaba/sentinel/README.md)
-        - [Seata](/work/service/springcloudalibaba/seata/README.md)
-        - [RocketMQ](/work/service/springcloudalibaba/rocketmq/standalone/README.md)
+        - [Sentinel](/work/service/springcloudalibaba/sentinel/README)
+        - [Seata](/work/service/springcloudalibaba/seata/README)
+        - [RocketMQ](/work/service/springcloudalibaba/rocketmq/standalone/README)
 - 流媒体服务
-    - [FFmpeg](/work/service/ffmpeg/README.md)
+    - [FFmpeg](/work/service/ffmpeg/README)
     - ZLMediaKit
-        - [安装文档](/work/service/zlmediakit/README.md)
-        - [使用文档](/work/service/zlmediakit/OPS.md)
+        - [安装文档](/work/service/zlmediakit/README)
+        - [使用文档](/work/service/zlmediakit/OPS)
     - SRS
-        - [安装文档](/work/service/srs/README.md)
-        - [使用文档](/work/service/srs/OPS.md)
+        - [安装文档](/work/service/srs/README)
+        - [使用文档](/work/service/srs/OPS)
 - 其他服务
-    - [内网穿透FRP](/work/service/frp/README.md)
-    - [CoreDNS](/work/service/coredns/README.md)
+    - [内网穿透FRP](/work/service/frp/README)
+    - [CoreDNS](/work/service/coredns/README)
 

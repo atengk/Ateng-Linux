@@ -1,6 +1,6 @@
 ## SpringBoot应用
 
-使用Docker运行SpringBoot应用，动态指定运行参数和Jar文件。使用 **JAVA_OPTS** 环境变量设置 JVM 参数，使用 **SPRING_OPTS** 环境变量设置 Spring Boot 运行参数，使用 **JAR_FILE** 指定 JAR 文件。构建镜像部分参考：[构建镜像](/work/docker/dockerfile/java/debian/application/jdk8-auto/)
+使用Docker运行SpringBoot应用，动态指定运行参数和Jar文件。使用 **JAVA_OPTS** 环境变量设置 JVM 参数，使用 **SPRING_OPTS** 环境变量设置 Spring Boot 运行参数，使用 **JAR_FILE** 指定 JAR 文件。构建镜像部分参考：[构建镜像](/work/docker/dockerfile/java/debian/application/jdk8-auto/README)
 
 
 

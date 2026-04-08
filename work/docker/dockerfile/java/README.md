@@ -1,6 +1,6 @@
 # Java应用镜像构建
 
-- [使用构建的应用](/work/docker/service/java/)
+- [使用构建的应用](/work/docker/service/java/README)
 
 
 
