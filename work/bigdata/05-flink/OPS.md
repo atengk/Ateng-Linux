@@ -1242,7 +1242,7 @@ use catalog hive_catalog;
 
 在hive中创建表
 
-> 参考：[Hive创建外部存储MinIO表](https://atengk.github.io/ops/#/work/bigdata/04-hive/OPS#%E5%A4%96%E9%83%A8%E8%A1%A8-minio)
+> 参考：[Hive创建外部存储MinIO表](/work/bigdata/04-hive/OPS#%E5%A4%96%E9%83%A8%E8%A1%A8-minio)
 
 ```
 $ beeline -u jdbc:hive2://bigdata01:10000 -n admin
@@ -1621,7 +1621,7 @@ default_catalog.default_database.my_user;
 
 #### Iceberg
 
-参考：[使用Iceberg文档](https://atengk.github.io/ops/#/work/bigdata/06-iceberg/README#spark)
+参考：[使用Iceberg文档](/work/bigdata/06-iceberg/README#spark)
 
 **下载依赖包**
 
