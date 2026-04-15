@@ -429,11 +429,13 @@ export default defineConfig({
                             items: [
                                 {text: 'mysql', link: '/work/docker/service/mysql/README'},
                                 {text: 'postgresql', link: '/work/docker/service/postgresql/README'},
+                                {text: 'pgvector', link: '/work/docker/service/postgresql/pgvector/README'},
                                 {text: 'mongodb', link: '/work/docker/service/mongodb/README'},
                                 {text: 'redis', link: '/work/docker/service/redis/README'},
                                 {text: 'TiDB', link: '/work/docker/service/tidb/README'},
                                 {text: 'OceanBase CE', link: '/work/docker/service/oceanbase/README'},
-                                {text: '达梦数据库', link: '/work/docker/service/dm8/v20241230/README'}
+                                {text: '达梦数据库', link: '/work/docker/service/dm8/v20241230/README'},
+                                {text: 'Milvus', link: '/work/docker/service/milvus/README'},
                             ]
                         },
                         {
@@ -498,7 +500,6 @@ export default defineConfig({
                                 {text: 'kkfileview', link: '/work/docker/service/kkfileview/v4.4.0/README'},
                                 {text: 'OnlyOffice', link: '/work/docker/service/onlyoffice/README'},
                                 {text: 'Nexus 3', link: '/work/docker/service/nexus/README'},
-                                {text: 'Milvus', link: '/work/docker/service/milvus/README'},
                                 {text: 'Snail-Job', link: '/work/docker/service/snail-job/README'},
                                 {text: '禅道', link: '/work/docker/service/zentao/README'},
                                 {
