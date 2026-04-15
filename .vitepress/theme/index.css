@@ -145,3 +145,14 @@
         max-height: 100vh !important;
     }
 }
+
+/* 限制代码块最大高度，超出部分滚动 */
+.vp-doc div[class*="language-"] {
+    max-height: 500px; /* 你可以根据需要调整高度 */
+    overflow-y: auto;
+}
+
+/* 针对内部 pre 标签微调，确保滚动流畅 */
+.vp-doc div[class*="language-"] pre {
+    margin: 0;
+}
