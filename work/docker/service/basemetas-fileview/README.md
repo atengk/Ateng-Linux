@@ -11,7 +11,8 @@
 ```
 docker run -d --name ateng-basemetas-fileview \
     -p 20045:80 --restart=always \
-    basemetas/fileview:latest
+    -e TZ=Asia/Shanghai \
+    basemetas/fileview:1.4.0
 ```
 
 **查看日志**
@@ -27,6 +28,8 @@ docker logs -f ateng-basemetas-fileview
 ```
 URL: http://192.168.1.12:20045
 ```
+
+![image-20260416134848092](./assets/image-20260416134848092.png)
 
 **删除服务**
 
