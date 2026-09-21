@@ -7,13 +7,13 @@ RustFS 是一款简单、高效、分布式的对象存储。 同时，也是一
 **下载镜像**
 
 ```
-docker pull rustfs/rustfs:1.0.0-alpha.76
+docker pull rustfs/rustfs:1.0.0
 ```
 
 **推送到仓库**
 
 ```
-docker tag rustfs/rustfs:1.0.0-alpha.76 registry.lingo.local/service/rustfs:1.0.0
+docker tag rustfs/rustfs:1.0.0 registry.lingo.local/service/rustfs:1.0.0
 docker push registry.lingo.local/service/rustfs:1.0.0
 ```
 
@@ -53,8 +53,8 @@ docker logs -f ateng-rustfs
 **使用服务**
 
 ```
-API URL: http://192.168.1.114:20031
-Web URL: http://192.168.1.114:20032
+API URL: http://192.168.1.12:20031
+Web URL: http://192.168.1.12:20032
 Username: admin
 Password: Admin@123
 ```
